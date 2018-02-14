@@ -8,8 +8,11 @@ rp("https://reddit.com/r/popular.json",
         // console.log(JSON.parse(body));
         JSON.parse(res.body).data.children.map(
             (item, index) => {
-                if(!item.data.is_video){
-                    console.log(`${item.data.title}, This ain't a Video/Gif`);
+                if(item.data.media){
+                    if(item.data.media.reddit_video !== undefined || item.data.media.oembed !== undefined){
+                        console.log(`${item.data.title}, is gif? ${item.data.media.reddit_video}`);
+                        console.dir(item.data.media.reddit_video);
+                    }
                     // console.log(item)
                 }
                 // console.log(item.data);
